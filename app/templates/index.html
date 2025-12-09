@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <title>Chat Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        #chat-container {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+        }
+        #input-container {
+            display: flex;
+            margin-top: 10px;
+        }
+        #text-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #send-button {
+            padding: 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Chat with OpenAI</h1>
+<div id="chat-container"></div>
+<div id="input-container">
+    <input type="text" id="text-input" placeholder="Type your message here...">
+    <button id="send-button">Send</button>
+</div>
+
+<script>
+    document.getElementById('send-button').addEventListener('click', async () => {
+        const inputElement = document.getElementById('text-input');
+        const userText = inputElement.value;
+        
+        // Append user message to chat container
+        document.getElementById('chat-container').innerHTML += `<div>User: ${userText}</div>`;
+        
+        // Clear input
+        inputElement.value = '';
+
+        try {
+            // Sending request to backend
+            const response = await fetch('/process', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: userText })
+            });
+
+            const data = await response.json();
+
+            // Append AI response
+            document.getElementById('chat-container').innerHTML += `<div>AI: ${data.response}</div>`;
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+</script>
+
+</body>
+</html>
