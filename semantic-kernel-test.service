@@ -1,0 +1,20 @@
+[Unit]
+Description=Semantic Kernel Test
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/my/semantic-kernel-test
+Environment="PATH=/usr/bin:/usr/local/bin"
+ExecStart=/usr/bin/make run
+Restart=always
+RestartSec=10
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=semantic-kernel-test
+
+[Install]
+WantedBy=multi-user.target
