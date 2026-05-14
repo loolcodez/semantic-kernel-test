@@ -29,7 +29,14 @@ class AppServer:
 
         @self.app.get("/", response_class=HTMLResponse)
         async def read_index(request: Request):
-            return self.templates.TemplateResponse("index.html", {"request": request})
+            #return self.templates.TemplateResponse("index.html", {"request": request})
+            return self.templates.TemplateResponse(
+                request=request,
+                name="index.html",
+                context={
+                    "title": "Semantic Kernel Test"
+                }
+            )
 
         @self.app.get("/images/favicon.png")
         async def get_favicon():

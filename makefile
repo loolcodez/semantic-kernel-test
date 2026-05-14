@@ -2,7 +2,7 @@ SHELL := bash
 .ONESHELL:
 .SHELLFLAGS := -ecx
 PYTHON := python3
-PORT := 8000
+PORT := 8001
 
 # Call this only if you need to enter shell and work interactive there
 env:
@@ -16,20 +16,20 @@ setup:
 
 # Call this if you want to run the app in virtual env. This will also install all dependencies in defined pipfile in the virtual env
 run: setup
-	pipenv run uvicorn app.main:app --reload --log-config log_settings.yaml --port $(PORT)
+	pipenv run uvicorn app.main:app --reload --log-config log_settings.yaml --host 0.0.0.0 --port $(PORT)
 
 # Install as systemd service (requires sudo)
 install-service:
-	sudo cp semantic-kernel-test.service /etc/systemd/system/
+	sudo cp agent-ui.service /etc/systemd/system/
 	sudo systemctl daemon-reload
-	sudo systemctl enable semantic-kernel-test.service
-	@echo "Service installed. Start with: sudo systemctl start semantic-kernel-test"
+	sudo systemctl enable agent-ui.service
+	@echo "Service installed. Start with: sudo systemctl start agent-ui"
 
 # Uninstall systemd service (requires sudo)
 uninstall-service:
-	sudo systemctl stop semantic-kernel-test.service || true
-	sudo systemctl disable semantic-kernel-test.service || true
-	sudo rm -f /etc/systemd/system/semantic-kernel-test.service
+	sudo systemctl stop agent-ui.service || true
+	sudo systemctl disable agent-ui.service || true
+	sudo rm -f /etc/systemd/system/agent-ui.service
 	sudo systemctl daemon-reload
 	@echo "Service uninstalled"
 

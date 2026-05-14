@@ -6,7 +6,7 @@ from semantic_kernel.connectors.ai.function_choice_behavior import FunctionChoic
 from semantic_kernel.connectors.ai.open_ai import OpenAIChatPromptExecutionSettings
 from semantic_kernel.contents.chat_history import ChatHistory
 from semantic_kernel.functions.kernel_arguments import KernelArguments
-from app.lights_plugin import LightsPlugin
+from app.tools.lights_plugin import LightsPlugin
 
 log = logging.getLogger("uvicorn.error")
 

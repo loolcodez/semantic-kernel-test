@@ -5,7 +5,7 @@ A simple web app example using FastAPI and Semantic Kernel. User is able to talk
 
 ## Quick Start
 
-To run this app, open terminal in the `semantic-kernel-test` folder and run:
+To run this app, open terminal in the `agent-ui` folder and run:
 
 Create .env file and edit it. You need to give your OpenAI API key and the used AI model.
 cp .env.example .env
@@ -33,7 +33,7 @@ Run the application. This also installs all dependencies when needed.
 Then open a web page: http://localhost:8080
 
 ### `install-service`
-Install as systemd service (requires sudo). Service expects that code is located here: /opt/my/semantic-kernel-test
+Install as systemd service (requires sudo). Service expects that code is located here: /opt/my/agent-ui
 
 ### `uninstall-service`
 Uninstall systemd service (requires sudo)

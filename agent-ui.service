@@ -1,11 +1,11 @@
 [Unit]
-Description=Semantic Kernel Test
+Description=Agent UI
 After=network.target
 
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/opt/my/semantic-kernel-test
+WorkingDirectory=/opt/my/agent-ui
 Environment="PATH=/usr/bin:/usr/local/bin"
 ExecStart=/usr/bin/make run
 Restart=always
@@ -14,7 +14,7 @@ RestartSec=10
 # Logging
 StandardOutput=journal
 StandardError=journal
-SyslogIdentifier=semantic-kernel-test
+SyslogIdentifier=agent-ui
 
 [Install]
 WantedBy=multi-user.target
